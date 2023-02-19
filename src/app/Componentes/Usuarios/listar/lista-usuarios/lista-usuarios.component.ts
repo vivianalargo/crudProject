@@ -6,7 +6,7 @@ import { UsuariosService } from 'src/app/servicio/usuarios.service';
 @Component({
   selector: 'app-lista-usuarios',
   //templateUrl: './lista-usuarios.component.html',
-  template: '<app-lista [rowData]="rowData" (onSelection)="onRowSelected($event)"></app-lista>',
+  template: '<app-lista [rowData]="rowData" [verBotones]="verBotones" (onSelection)="onRowSelected($event)"></app-lista>',
   styleUrls: ['./lista-usuarios.component.css']
 })
 export class ListaUsuariosComponent {
@@ -17,6 +17,8 @@ export class ListaUsuariosComponent {
     rowData: Item[] | any;
 
     //item = new Item();
+
+    verBotones= true;
     
 
     constructor(UsuariosService: UsuariosService) {

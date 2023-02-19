@@ -6,7 +6,7 @@ import { AuditoriasService } from 'src/app/servicio/auditorias.service';
 @Component({
   selector: 'app-lista-auditorias',
   /*templateUrl: './lista-auditorias.component.html',*/
-  template: '<app-lista [rowData]="rowData" (onSelection)="onRowSelected($event)"></app-lista>',
+  template: '<app-lista [rowData]="rowData" [verBotones]="verBotones"(onSelection)="onRowSelected($event)"></app-lista>',
   styleUrls: ['./lista-auditorias.component.css']
 })
 
@@ -19,6 +19,8 @@ export class ListaAuditoriasComponent {
     listaItems: Item[] = [];
 
     rowData: Item[] | any;
+
+    verBotones= false;
 
     //item = new Item();
     

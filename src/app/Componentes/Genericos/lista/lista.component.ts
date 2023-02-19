@@ -15,6 +15,7 @@ export class ListaComponent<TData> implements OnInit{
   @Input() rowData!: TData[];
   @Output() onSelection: EventEmitter<TData> = new EventEmitter<TData>();
 
+  @Input() verBotones!: boolean;
 
   dataSource = new MatTableDataSource<TData>();
 
