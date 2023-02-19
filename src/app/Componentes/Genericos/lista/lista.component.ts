@@ -2,6 +2,8 @@ import { Component ,Input,Output,EventEmitter,OnInit,AfterViewInit, ViewChild} f
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import {MatPaginator} from '@angular/material/paginator';
+import {SelectionModel} from '@angular/cdk/collections';
+import { Item } from 'src/app/modelos/itemLista';
 
 @Component({
   selector: 'app-lista',
@@ -18,11 +20,11 @@ export class ListaComponent<TData> implements OnInit{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  
+  selection = new SelectionModel<TData>(true, []);
 
   //displayedColumns: string[] = ['username','fecha'];
 
-  displayedColumns: string[] = ['username','campo2'];
+  displayedColumns: string[] = ['select','username','campo2'];
 
 
   pageEvent!: PageEvent;
@@ -47,5 +49,31 @@ export class ListaComponent<TData> implements OnInit{
     console.log('componente generico');
     console.log(this.rowData);
     this.dataSource = new MatTableDataSource<TData>(this.rowData);
+  }*/
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  
+  /** The label for the checkbox on the passed row */
+  /*checkboxLabel(row?: TData): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`;
   }*/
 }
