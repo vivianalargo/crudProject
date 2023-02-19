@@ -1,7 +1,7 @@
-import { Component ,Input,Output,EventEmitter,OnInit} from '@angular/core';
+import { Component ,Input,Output,EventEmitter,OnInit,AfterViewInit, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
-
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-lista',
@@ -16,7 +16,7 @@ export class ListaComponent<TData> implements OnInit{
 
   dataSource = new MatTableDataSource<TData>();
 
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   
 
@@ -37,6 +37,10 @@ export class ListaComponent<TData> implements OnInit{
 
 
     this.dataSource = new MatTableDataSource<TData>(this.rowData);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   /*constructor() {

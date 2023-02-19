@@ -13,18 +13,39 @@ import { AuditoriasService } from 'src/app/servicio/auditorias.service';
 export class ListaAuditoriasComponent {
 
     // Row data of cars to provide to the grid
-    auditorias: Auditoria[] | any; //quitarle el any para entender bien el error
+    //auditorias: Auditoria[] | any; //quitarle el any para entender bien el error
+
+    auditorias: Auditoria[] = [];
+    listaItems: Item[] = [];
 
     rowData: Item[] | any;
 
-    item = new Item();
+    //item = new Item();
     
+
     constructor(AuditoriasService: AuditoriasService) {
       console.log("entré aquí");
 
 
-      this.rowData = AuditoriasService.getAuditorias();
-      console.log(this.rowData);
+      this.auditorias = AuditoriasService.getAuditorias();
+
+
+      for (let i = 0; i< this.auditorias.length; i++) {
+        //console.log(scores[i]);
+
+        
+        let item = new Item();
+
+        item.username = this.auditorias[i].username;
+        item.campo2 = this.auditorias[i].fecha;
+
+        this.listaItems.push(item);
+
+      }
+
+      this.rowData = this.listaItems;
+      
+      console.log(this.auditorias);
     }
     
     // Callback when a row is selected
