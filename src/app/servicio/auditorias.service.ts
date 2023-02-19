@@ -14,9 +14,16 @@ export class AuditoriasService {
 
   auditoria = [];
 
-  getAuditorias(): Auditoria[] {
-    console.log(AuditoriaData);
+ //listar todas los registros de auditoria
+  obtenerAuditorias(): Auditoria[] {
+    console.log('este es el obtener todas las auditorias');
     return AuditoriaData;
+  }
+
+  //enviar una auditoria para su almacenamiento
+  guardarAuditorias(auditoria:Auditoria){
+    console.log('Este es el guardar de Auditorias');
+
   }
 }
 

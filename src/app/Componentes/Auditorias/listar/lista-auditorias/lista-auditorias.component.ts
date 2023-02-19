@@ -27,7 +27,7 @@ export class ListaAuditoriasComponent {
       console.log("entré aquí");
 
 
-      this.auditorias = AuditoriasService.getAuditorias();
+      this.auditorias = AuditoriasService.obtenerAuditorias();
 
 
       for (let i = 0; i< this.auditorias.length; i++) {

@@ -32,7 +32,7 @@ export class FormularioUsuariosComponent {
   agregar(){
     //delete this.equipo.id_equipo;
 
-    this.UsuariosService.addUsuario(this.usuario);
+    this.UsuariosService.guardarUsuario(this.usuario);
   }
 
 }

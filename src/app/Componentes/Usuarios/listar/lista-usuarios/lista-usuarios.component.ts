@@ -22,7 +22,7 @@ export class ListaUsuariosComponent {
     constructor(UsuariosService: UsuariosService) {
       console.log("entré aquí");
 
-      this.usuarios = UsuariosService.getUsuarios();
+      this.usuarios = UsuariosService.obtenerUsuarios();
 
       for (let i = 0; i< this.usuarios.length; i++) {
         //console.log(scores[i]);

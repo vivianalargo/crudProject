@@ -1,1 +1,27 @@
-<p>loguin works!</p>
+<form>
+
+    
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>usuario</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    
+    
+    </div>
+      
+    
+    <div class="example-container">
+      <button mat-button>Ingresar</button>
+    </div>
+    </form>

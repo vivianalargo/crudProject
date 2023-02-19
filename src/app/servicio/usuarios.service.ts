@@ -14,13 +14,32 @@ export class UsuariosService {
 
   usuario = [];
 
-  getUsuarios(): Usuario[] {
+  obtenerUsuarios(): Usuario[] {
     //console.log(heroData);
     return UsuarioData;
   }
 
-  addUsuario(usuario:Usuario) {
-    console.log(usuario);
+  //Me permite guardar un nuevo usuario o modificar sus datos
+  //validando username
+  guardarUsuario(usuario:Usuario) {
+    console.log("Estoy en guardarUsuario");
     //return UsuarioData;
   }
+
+
+  //Me permite obtener la info de un nuevo usuario o modificar sus datos
+  //validando username
+  obtenerUsuario(usuario:Usuario) { //return ? : Usuario[]
+    console.log("Estoy en obtenerUsuario");
+    //return UsuarioData;
+  }
+
+    //Me permite obtener la info de un nuevo usuario o modificar sus datos
+  //validando username
+  eliminarUsuario(idUsuario:number) { //return ? : Usuario[]
+    console.log("Estoy en eliminarUsuario");
+    //return UsuarioData;
+  }
+
+  
 }
