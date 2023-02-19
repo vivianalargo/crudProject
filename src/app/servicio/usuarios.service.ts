@@ -18,4 +18,9 @@ export class UsuariosService {
     //console.log(heroData);
     return UsuarioData;
   }
+
+  addUsuario(usuario:Usuario) {
+    console.log(usuario);
+    //return UsuarioData;
+  }
 }
