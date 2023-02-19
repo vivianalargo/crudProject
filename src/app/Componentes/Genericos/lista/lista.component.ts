@@ -24,7 +24,7 @@ export class ListaComponent<TData> implements OnInit{
 
   //displayedColumns: string[] = ['username','fecha'];
 
-  displayedColumns: string[] = ['select','username','campo2'];
+  displayedColumns: string[] = ['seleccionar','username','campo2','editar','eliminar'];
 
 
   pageEvent!: PageEvent;
@@ -66,8 +66,39 @@ export class ListaComponent<TData> implements OnInit{
     }
 
     this.selection.select(...this.dataSource.data);
+
+    console.log(this.selection);
   }
 
+
+  seleccionarFila(event:any,row: any) {
+    /*this.client = data;
+
+    GlobalData.client1 = this.client*/
+
+    if(event.target.checked==true){
+      console.log(row);
+    }
+    else{
+      console.log('checkbox is unchecked');
+    }
+
+    
+
+  }
+
+
+  editar(row: any) {
+    console.log("editar" + row);
+
+
+  }
+
+  eliminar(row: any) {
+
+      console.log("eliminar" + row);
+
+  }
   
   /** The label for the checkbox on the passed row */
   /*checkboxLabel(row?: TData): string {
