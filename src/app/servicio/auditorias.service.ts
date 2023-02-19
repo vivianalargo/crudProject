@@ -15,7 +15,7 @@ export class AuditoriasService {
   auditoria = [];
 
   getAuditorias(): Auditoria[] {
-    //console.log(heroData);
+    console.log(AuditoriaData);
     return AuditoriaData;
   }
 }
