@@ -40,10 +40,10 @@ export class LoguinComponent {
   ngOnInit(): void {
   }
 
-  VerificarUsuario(){
+  validarUsuario(){
     //delete this.equipo.id_equipo;
 
-    this.UsuariosService.obtenerUsuario(this.usuario);
+    this.UsuariosService.validarUsuario(this.usuario);
   }
 
 }

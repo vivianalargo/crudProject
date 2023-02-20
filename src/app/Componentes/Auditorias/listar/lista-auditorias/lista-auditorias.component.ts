@@ -1,14 +1,11 @@
-import { Component,EventEmitter,OnInit,AfterViewInit,OnChanges, ViewChild} from '@angular/core';
+import { Component,OnInit,AfterViewInit,ViewChild} from '@angular/core';
 import { Auditoria } from 'src/app/modelos/auditoria';
-import { Item } from 'src/app/modelos/itemLista';
 import { AuditoriasService } from 'src/app/servicio/auditorias.service';
-
-import { Observable } from 'rxjs';
-
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
-import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
+
+
 
 @Component({
   selector: 'app-lista-auditorias',
@@ -17,7 +14,7 @@ import {SelectionModel} from '@angular/cdk/collections';
   styleUrls: ['./lista-auditorias.component.css']
 })
 
-export class ListaAuditoriasComponent {
+export class ListaAuditoriasComponent implements OnInit,AfterViewInit {
 
     // Row data of cars to provide to the grid
     //auditorias: Auditoria[] | any; //quitarle el any para entender bien el error
@@ -33,122 +30,66 @@ export class ListaAuditoriasComponent {
     
     dataSource = new MatTableDataSource<Auditoria>();
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    el: any = [];
 
     selection = new SelectionModel<Auditoria>(true, []);
 
-    displayedColumns: string[] = ['seleccionar','username','fecha','editar','eliminar'];
+    displayedColumns: string[] = ['seleccionar','iduser','fecha','editar','eliminar'];
 
     pageEvent!: PageEvent;
-  
+
+    pageSizeOptions!: number[];
 
     constructor(private AuditoriasService: AuditoriasService) {
-      /*console.log("entré aquí");
 
-
-      this.auditorias = AuditoriasService.obtenerAuditorias();
-
-
-      for (let i = 0; i< this.auditorias.length; i++) {
-        //console.log(scores[i]);
-
-        
-        let item = new Item();
-
-        item.username = this.auditorias[i].username;
-        item.campo2 = this.auditorias[i].fecha;
-
-        this.listaItems.push(item);
-
-      }
-
-      this.rowData = this.listaItems;
-      
-      console.log(this.auditorias);*/
-
-/*
-      AuditoriasService.obtenerAuditorias().subscribe(
-        resp => {
-          this.auditorias = resp;
-        });
-
-      for (let i = 0; i< this.auditorias.length; i++) {
-        //console.log(scores[i]);
-
-        
-        let item = new Item();
-
-        item.username = this.auditorias[i].iduser;
-        item.campo2 = this.auditorias[i].fecha;
-
-        this.listaItems.push(item);
-
-      }
-
-      this.rowData = this.listaItems;
-      
-      console.log(this.auditorias);*/
     }
 
     ngOnInit()
     {
+      this.pageEvent = new PageEvent();
+      this.pageSizeOptions = [5, 10, 25, 100];
+      this.pageEvent.pageSize = 10;
       this.listar();
     }
-
-    /*ngOnChanges(changes: SimpleChanges) {
-      this.listar();
-
-    }*/
-
 
     listar()
     {
       this.AuditoriasService.obtenerAuditorias().subscribe(
         resp => {
-
+          this.el = resp.shift();
+          this.loadPagination(this.el);
           //console.log(resp);
           this.auditorias = resp;
 
           this.dataSource = new MatTableDataSource<Auditoria>(this.auditorias);
-          /*
 
-          console.log(this.usuarios);
-
-          for (let i = 0; i< this.usuarios.length; i++) {
-            //console.log(scores[i]);
-    
-            
-            let item = new Item();
-    
-            item.username = this.usuarios[i].username;
-            item.campo2 = this.usuarios[i].nombre;
-    
-            this.listaItems.push(item);
-    
-          }
-    
-          console.log('usuarios, ver lista items')
-          console.log(this.listaItems);
-    
-          this.rowData = this.listaItems;
-          
-          console.log(this.usuarios);
-          console.log(this.rowData);*/
         });
     }
-    
+
+    listClientsReload() {
+
+
+      this.loadPagination(this.el);
+      this.dataSource = new MatTableDataSource<Auditoria>(this.auditorias.slice(this.pageEvent.pageSize, ((this.pageEvent.pageIndex * this.pageEvent.pageSize)+ this.pageEvent.pageSize)));
+
+ 
+    }
+
+    loadPagination(data:any) {
+      this.pageEvent.length = data ? data.length: 0;
+    }
 
     ngAfterViewInit() {
 
-      this.dataSource.paginator = this.paginator;
+      //this.dataSource.paginator = this.paginator;
     }
    
-    
-    onRowSelected(event: Auditoria){
-      console.log('seleccionado');
+    pager(pageEvent: PageEvent) {
+      this.pageEvent = pageEvent;
+  
+      this.listClientsReload();
     }
-
-
+    
     seleccionarFila(event:any,row: any) {
 
 
@@ -158,9 +99,7 @@ export class ListaAuditoriasComponent {
       else{
         console.log('checkbox is unchecked');
       }
-  
-      
-  
+
     }
   
   

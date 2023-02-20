@@ -29,8 +29,10 @@ export class FormularioUsuariosComponent {
   ngOnInit(): void {
   }
 
-  agregar(){
+  guardar(){
     //delete this.equipo.id_equipo;
+    //console.log('estoy en guardar usuario');
+    //console.log(this.usuario);
 
     this.UsuariosService.guardarUsuario(this.usuario);
   }

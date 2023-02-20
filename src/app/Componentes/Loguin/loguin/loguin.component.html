@@ -4,14 +4,14 @@
     <div class="example-container">
       <mat-form-field appearance="fill">
         <mat-label>usuario</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="usuario.username" name="username">
       </mat-form-field>
     </div>
     
     <div class="example-container">
       <mat-form-field appearance="fill">
         <mat-label>password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" name="password">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -22,6 +22,6 @@
       
     
     <div class="example-container">
-      <button mat-button>Ingresar</button>
+      <button mat-button (click)="validarUsuario()">Ingresar</button>
     </div>
     </form>

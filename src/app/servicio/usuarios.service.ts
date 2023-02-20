@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Usuario } from '../modelos/usuario';
 import UsuarioData from '../../app/usuarios.json';
 import { env } from 'src/enviroments/env';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -16,40 +16,53 @@ export class UsuariosService {
 
   usuario = [];
 
-  //private url = env.urlServicios;
-
-  
-
-  obtenerUsuarios(): Observable<Usuario[]> { // Usuario[]
+  obtenerUsuarios(): Observable<Usuario[]> { 
     //console.log('obtenerUsuarios');
-    //console.log(this.http.get<Usuario[]>('https://localhost:7250/api/Usuarios'));
-    //return UsuarioData;
+
 
     return this.http.get<Usuario[]>('https://localhost:7250/api/Usuarios');
   }
 
   //Me permite guardar un nuevo usuario o modificar sus datos
   //validando username
-  guardarUsuario(usuario:Usuario) {
-    console.log("Estoy en guardarUsuario");
-    //return UsuarioData;
-    //return this.http.get<SelectListItem[]>(this.url + 'propertyTypes');
+  guardarUsuario(usuario:Usuario):any{
+    //console.log("Estoy en guardarUsuario");
 
-    //this.http.post<Usuario[]>(this.url + 'propertyTypes',usuario);
 
-    //int id, string username, string nombre, string password
+    //console.log(usuario);
+
+    let params: HttpParams = new HttpParams();
+    params = params.append('username', usuario.username);
+    params = params.append('nombre', usuario.nombre);
+    params = params.append('password', usuario.password);
+  
+    let httpOptions = {
+      params: params
+    };
+  
+    return this.http.post<any>('https://localhost:7250/api/Usuarios', httpOptions);
+
   }
-
 
   //Me permite obtener la info de un nuevo usuario o modificar sus datos
   //validando username
-  obtenerUsuario(usuario:Usuario) { //return ? : Usuario[]
-    console.log("Estoy en obtenerUsuario");
-    //return UsuarioData;
+  validarUsuario(usuario:Usuario) { //return ? : Usuario[]
+    console.log("Estoy en validarUsuario");
+
+    console.log(usuario);
+
+    let params: HttpParams = new HttpParams();
+    params = params.append('username', usuario.username);
+    params = params.append('password', usuario.password);
+  
+    let httpOptions = {
+      params: params
+    };
+  
+    return this.http.post<any>('https://localhost:7250/api/Loguin', httpOptions);
   }
 
-    //Me permite obtener la info de un nuevo usuario o modificar sus datos
-  //validando username
+
   eliminarUsuario(idUsuario:number) { //return ? : Usuario[]
     console.log("Estoy en eliminarUsuario");
     //return UsuarioData;

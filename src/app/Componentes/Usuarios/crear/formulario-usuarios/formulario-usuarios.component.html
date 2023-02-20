@@ -19,7 +19,7 @@
 <div class="example-container">
   <mat-form-field appearance="fill">
     <mat-label>password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
+    <input matInput [type]="hide ? 'password' : 'text'" matInput [(ngModel)]="usuario.password" name="password">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
@@ -30,6 +30,6 @@
   
 
 <div class="example-container">
-  <button mat-button>Guardar</button>
+  <button mat-button (click)="guardar()">Guardar</button>
 </div>
 </form>
