@@ -23,13 +23,13 @@ export class LoguinComponent {
   usuario: Usuario={
     id:0,
     username:'',    
-    name: '',
+    nombre: '',
     password:''
   };
 
   auditoria: Auditoria={
     id:0,
-    username:'', 
+    iduser:'', 
     fecha:'',    
 
   };

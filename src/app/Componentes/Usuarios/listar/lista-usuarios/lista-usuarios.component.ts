@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario } from 'src/app/modelos/usuario';
 import { Item } from 'src/app/modelos/itemLista';
 import { UsuariosService } from 'src/app/servicio/usuarios.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -24,7 +25,10 @@ export class ListaUsuariosComponent {
     constructor(UsuariosService: UsuariosService) {
       console.log("entré aquí");
 
-      this.usuarios = UsuariosService.obtenerUsuarios();
+      UsuariosService.obtenerUsuarios().subscribe(
+        resp => {
+          this.usuarios = resp;
+        });
 
       for (let i = 0; i< this.usuarios.length; i++) {
         //console.log(scores[i]);
@@ -33,7 +37,7 @@ export class ListaUsuariosComponent {
         let item = new Item();
 
         item.username = this.usuarios[i].username;
-        item.campo2 = this.usuarios[i].name;
+        item.campo2 = this.usuarios[i].nombre;
 
         this.listaItems.push(item);
 

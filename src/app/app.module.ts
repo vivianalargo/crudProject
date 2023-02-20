@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+ 
 
 import { MatTableModule } from '@angular/material/table'
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -38,7 +42,9 @@ import { ListaAuditoriasComponent } from './Componentes/Auditorias/listar/lista-
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

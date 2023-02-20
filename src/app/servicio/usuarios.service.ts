@@ -2,21 +2,29 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../modelos/usuario';
 import UsuarioData from '../../app/usuarios.json';
+import { env } from 'src/enviroments/env';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
-  useFactory: () => new UsuariosService(),
+  //useFactory: () => new UsuariosService(),
   deps: [],
 })
 
 export class UsuariosService {
-  constructor() {}
+  constructor(private http: HttpClient) { }
 
   usuario = [];
 
-  obtenerUsuarios(): Usuario[] {
+  //private url = env.urlServicios;
+
+  
+
+  obtenerUsuarios(): Observable<Usuario[]> { // Usuario[]
     //console.log(heroData);
-    return UsuarioData;
+    //return UsuarioData;
+
+    return this.http.get<Usuario[]>('https://localhost:7250/api/Usuarios');
   }
 
   //Me permite guardar un nuevo usuario o modificar sus datos
@@ -24,6 +32,11 @@ export class UsuariosService {
   guardarUsuario(usuario:Usuario) {
     console.log("Estoy en guardarUsuario");
     //return UsuarioData;
+    //return this.http.get<SelectListItem[]>(this.url + 'propertyTypes');
+
+    //this.http.post<Usuario[]>(this.url + 'propertyTypes',usuario);
+
+    //int id, string username, string nombre, string password
   }
 
 

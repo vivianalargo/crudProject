@@ -1,6 +1,6 @@
 export class Auditoria{
     id!:number;
-    username!:string; 
+    iduser!:string; 
     fecha!:string;    
 
 }

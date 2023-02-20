@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input'; 
-
+import { FormsModule } from '@angular/forms';
 import { UsuariosService } from 'src/app/servicio/usuarios.service';
 import { Usuario } from 'src/app/modelos/usuario';
 
@@ -19,7 +19,7 @@ export class FormularioUsuariosComponent {
   usuario: Usuario={
     id:0,
     username:'',    
-    name: '',
+    nombre: '',
     password:''
   };
 

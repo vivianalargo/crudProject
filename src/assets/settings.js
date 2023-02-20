@@ -1,5 +1,5 @@
 var configuracionServicios= {
 
-	domain:"https://40.114.92.51:1980/",
-	urlServicios:"https://40.114.92.51:1980/SicoApi/api",
+	domain:"https://localhost:7250//",
+	urlServicios:"https://localhost:7250/api",
 }

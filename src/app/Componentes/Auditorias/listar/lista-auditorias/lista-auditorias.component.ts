@@ -26,7 +26,7 @@ export class ListaAuditoriasComponent {
     
 
     constructor(AuditoriasService: AuditoriasService) {
-      console.log("entré aquí");
+      /*console.log("entré aquí");
 
 
       this.auditorias = AuditoriasService.obtenerAuditorias();
@@ -47,6 +47,29 @@ export class ListaAuditoriasComponent {
 
       this.rowData = this.listaItems;
       
+      console.log(this.auditorias);*/
+
+
+      AuditoriasService.obtenerAuditorias().subscribe(
+        resp => {
+          this.auditorias = resp;
+        });
+
+      for (let i = 0; i< this.auditorias.length; i++) {
+        //console.log(scores[i]);
+
+        
+        let item = new Item();
+
+        item.username = this.auditorias[i].iduser;
+        item.campo2 = this.auditorias[i].fecha;
+
+        this.listaItems.push(item);
+
+      }
+
+      this.rowData = this.listaItems;
+      
       console.log(this.auditorias);
     }
     
@@ -57,6 +80,9 @@ export class ListaAuditoriasComponent {
     }
 
 }
+
+
+
 
 
 
