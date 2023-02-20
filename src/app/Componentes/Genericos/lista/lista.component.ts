@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Item } from 'src/app/modelos/itemLista';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista',
@@ -33,16 +34,16 @@ export class ListaComponent<TData> implements OnInit{
   //dataSource = this.rowData;
 
   ngOnInit() {
-    console.log('componente generico');
-    console.log(this.rowData);
-
-    
+    //console.log('componente generico');
+    //console.log(this.rowData);
 
 
     this.dataSource = new MatTableDataSource<TData>(this.rowData);
   }
 
   ngAfterViewInit() {
+    //this.dataSource = new MatTableDataSource<TData>(this.rowData);
+    //this.dataSource.data = this.rowData$
     this.dataSource.paginator = this.paginator;
   }
 
@@ -73,9 +74,7 @@ export class ListaComponent<TData> implements OnInit{
 
 
   seleccionarFila(event:any,row: any) {
-    /*this.client = data;
 
-    GlobalData.client1 = this.client*/
 
     if(event.target.checked==true){
       console.log(row);

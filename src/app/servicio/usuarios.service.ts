@@ -21,7 +21,8 @@ export class UsuariosService {
   
 
   obtenerUsuarios(): Observable<Usuario[]> { // Usuario[]
-    //console.log(heroData);
+    //console.log('obtenerUsuarios');
+    //console.log(this.http.get<Usuario[]>('https://localhost:7250/api/Usuarios'));
     //return UsuarioData;
 
     return this.http.get<Usuario[]>('https://localhost:7250/api/Usuarios');

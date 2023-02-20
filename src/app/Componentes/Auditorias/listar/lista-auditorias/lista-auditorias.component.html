@@ -1,1 +1,60 @@
 
+<div style="z-index: 10;" class="mb-5">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- Checkbox Column -->
+  <ng-container matColumnDef="seleccionar" >
+    <th mat-header-cell *matHeaderCellDef >
+
+    </th>
+    <td mat-cell *matCellDef="let row" >
+      <mat-checkbox (click)="seleccionarFila($event,row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> USERNAME</th>
+        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> CAMPO 2</th>
+        <td mat-cell *matCellDef="let element">{{element.fecha}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="editar" >
+        <th mat-header-cell *matHeaderCellDef>
+    
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [disabled]="!verBotones" (click)="editar(row)">
+            <mat-icon aria-hidden="false" aria-label="editar" fontIcon="edit"></mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="eliminar" >
+        <th mat-header-cell *matHeaderCellDef>
+    
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [disabled]="!verBotones" (click)="eliminar(row)">
+            <mat-icon aria-hidden="false" aria-label="eliminar" fontIcon="delete"></mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; let element; columns: displayedColumns;" ></tr>
+  
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+    </div>
+
+
+
