@@ -1,6 +1,6 @@
-export class Usuario{
-    id!:number;
-    username!:string;    
-    nombre!: string;
-    password!:string;
+export interface Usuario{
+    id:number;
+    username:string;    
+    nombre: string;
+    password:string;
 }

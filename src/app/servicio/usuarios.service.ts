@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Usuario } from '../modelos/usuario';
 import UsuarioData from '../../app/usuarios.json';
 import { env } from 'src/enviroments/env';
-import { HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams,HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,10 @@ export class UsuariosService {
 
   usuario = [];
 
+  private httpHeaders = new  HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+
   obtenerUsuarios(): Observable<Usuario[]> { 
     //console.log('obtenerUsuarios');
 
@@ -25,23 +29,45 @@ export class UsuariosService {
 
   //Me permite guardar un nuevo usuario o modificar sus datos
   //validando username
-  guardarUsuario(usuario:Usuario):any{
+  guardarUsuario(usuario:Usuario):Observable<any>{
     //console.log("Estoy en guardarUsuario");
+    //let httpOptions = {headers: new HttpHeaders({ 'content-Type': 'application/json' })};
 
+    console.log(usuario);
 
-    //console.log(usuario);
-
-    let params: HttpParams = new HttpParams();
+    /*let params: HttpParams = new HttpParams();
     params = params.append('username', usuario.username);
     params = params.append('nombre', usuario.nombre);
     params = params.append('password', usuario.password);
-  
-    let httpOptions = {
-      params: params
-    };
-  
-    return this.http.post<any>('https://localhost:7250/api/Usuarios', httpOptions);
+  */
 
+
+
+   //{ username: usuario.username, nombre:usuario.nombre,password:usuario.password}
+
+    //let body = 'username=${'dario'}' 
+    /*this.http.post<any>('https://localhost:7250/api/Usuarios',usuario).subscribe(x => {
+      console.log('acabé');
+
+      
+    });*/
+
+    //let resp = 1;
+    //return resp;
+
+    return this.http.post<any>('https://localhost:7250/api/Usuarios',usuario,{
+      headers:this.httpHeaders,
+      observe:'response'
+    });
+  
+  }
+
+  peticion(usuario:Usuario):Observable<any>
+  {
+    return this.http.post<any>('https://localhost:7250/api/Usuarios',usuario,{
+      headers:this.httpHeaders,
+      observe:'response'
+    });
   }
 
   //Me permite obtener la info de un nuevo usuario o modificar sus datos

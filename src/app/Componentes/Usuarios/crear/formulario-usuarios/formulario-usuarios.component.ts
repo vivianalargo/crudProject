@@ -24,7 +24,7 @@ export class FormularioUsuariosComponent {
   };
 
 
-  constructor(private UsuariosService:UsuariosService) { }
+  constructor(private usuariosService:UsuariosService) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +34,15 @@ export class FormularioUsuariosComponent {
     //console.log('estoy en guardar usuario');
     //console.log(this.usuario);
 
-    this.UsuariosService.guardarUsuario(this.usuario);
+    /*this.usuariosService.peticion(this.usuario).subscribe(
+      data=>{
+          console.log(data);
+      });*/
+
+      this.usuariosService.guardarUsuario(this.usuario).subscribe(
+        data=>{
+            console.log(data);
+        });
   }
 
 }
