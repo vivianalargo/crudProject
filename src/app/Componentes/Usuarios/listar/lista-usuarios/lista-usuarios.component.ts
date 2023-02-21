@@ -40,7 +40,7 @@ export class ListaUsuariosComponent {
 
   //displayedColumns: string[] = ['username','fecha'];
 
-  displayedColumns: string[] = ['seleccionar','username','nombre','editar','eliminar'];
+  displayedColumns: string[] = ['seleccionar', 'id', 'username','nombre','editar','eliminar'];
 
 
   pageEvent!: PageEvent;
@@ -157,14 +157,30 @@ export class ListaUsuariosComponent {
   
   
     editar(row: any) {
-      console.log("editar" + row);
-  
+      console.log(row);
+
   
     }
   
     eliminar(row: any) {
   
-        console.log("eliminar" + row);
+        console.log(row);
+        this.UsuariosService.eliminarUsuario(row).subscribe(
+          resp => {
+
+
+            console.log(resp);
+            if(resp.body == 0)
+            {
+                console.log('No se puede eliminar el usuario');
+                alert('No se puede eliminar el usuario');
+            }
+            else
+            {
+              this.listar();
+            }
+            
+          });
   
     }
 

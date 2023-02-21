@@ -30,18 +30,15 @@ export class FormularioUsuariosComponent {
   }
 
   guardar(){
-    //delete this.equipo.id_equipo;
-    //console.log('estoy en guardar usuario');
-    //console.log(this.usuario);
-
-    /*this.usuariosService.peticion(this.usuario).subscribe(
-      data=>{
-          console.log(data);
-      });*/
 
       this.usuariosService.guardarUsuario(this.usuario).subscribe(
-        data=>{
-            console.log(data);
+        resp=>{
+            //console.log(data);
+            if(resp.body == 0)
+            {
+                console.log('No se guardar el usuario');
+                alert('No se puede guadar el usuario');
+            }
         });
   }
 
