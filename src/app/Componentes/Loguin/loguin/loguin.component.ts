@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Injectable  } from '@angular/core';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
@@ -9,6 +9,13 @@ import { Usuario } from 'src/app/modelos/usuario';
 
 import { AuditoriasService } from 'src/app/servicio/auditorias.service';
 import { Auditoria } from 'src/app/modelos/auditoria';
+
+import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: "root"
+})
+
 
 @Component({
   selector: 'app-loguin',
@@ -35,7 +42,7 @@ export class LoguinComponent {
   };
 
 
-  constructor(private UsuariosService:UsuariosService, private AuditoriasService:AuditoriasService) { }
+  constructor(private usuariosService:UsuariosService, private AuditoriasService:AuditoriasService, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -43,7 +50,22 @@ export class LoguinComponent {
   validarUsuario(){
     //delete this.equipo.id_equipo;
 
-    this.UsuariosService.validarUsuario(this.usuario);
+    //this.UsuariosService.validarUsuario(this.usuario);
+
+
+    this.usuariosService.validarUsuario(this.usuario).subscribe(
+      resp=>{
+          console.log(resp);
+          if(resp.body <= 0)
+          {
+              console.log('Acceso Denegado');
+              alert('Acceso Denegado');
+          }
+          else
+          {
+            this.router.navigateByUrl('/usuarios');
+          }
+      });
   }
 
 }

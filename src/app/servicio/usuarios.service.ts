@@ -58,22 +58,18 @@ export class UsuariosService {
     });
   }*/
 
-  //Me permite obtener la info de un nuevo usuario o modificar sus datos
-  //validando username
-  validarUsuario(usuario:Usuario) { //return ? : Usuario[]
+
+  validarUsuario(usuario:Usuario): Observable<any> {
     console.log("Estoy en validarUsuario");
 
     console.log(usuario);
 
-    let params: HttpParams = new HttpParams();
-    params = params.append('username', usuario.username);
-    params = params.append('password', usuario.password);
-  
-    let httpOptions = {
-      params: params
-    };
-  
-    return this.http.post<any>('https://localhost:7250/api/Loguin', httpOptions);
+    return this.http.post<any>('https://localhost:7250/api/Loguin',usuario,{
+      headers:this.httpHeaders,
+      observe:'response'
+    });
+
+    //return this.http.post<any>('https://localhost:7250/api/Loguin', httpOptions);
   }
 
 

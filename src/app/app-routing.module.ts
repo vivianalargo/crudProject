@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { LoguinComponent } from './Componentes/Loguin/loguin/loguin.component';
+import { HomeComponent } from './Componentes/Home/home/home.component';
+import { FormularioUsuariosComponent } from './Componentes/Usuarios/crear/formulario-usuarios/formulario-usuarios.component';
+import { VisualizarComponent } from './Componentes/Usuarios/visualizar/visualizar.component';
 
-//import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
-//import { HomeComponent } from './components/home/home.component';
+const routes: Routes = [
+  { path: "", component: HomeComponent, pathMatch: "full" },
+  { path: "usuarios", component: VisualizarComponent, pathMatch: "full" },
+  { path: "home", component: HomeComponent, pathMatch: "full" }
+];
 
-const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -12,14 +19,5 @@ const routes: Routes = [];
 })
 export class AppRoutingModule { }
 
-
-
-/*const routes: Routes = [
-  { path: 'property-detail-component/:idProperty', component: PropertyDetailComponent},
-  { path: 'inventario/:idEmpresa/:idObra/:nombreEmpresaObra', component: HomeComponent },
-  { path: 'SicoCRMInventory/inventario/:idEmpresa/:idObra/:nombreEmpresaObra', component: HomeComponent },
-  { path: '**', pathMatch:'full', redirectTo:'SicoCRMInventory/inventario/:idEmpresa/:idObra/:nombreEmpresaObra' }
-  
-];*/
 
 

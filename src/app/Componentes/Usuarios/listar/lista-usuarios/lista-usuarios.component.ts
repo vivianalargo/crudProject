@@ -1,4 +1,4 @@
-import { Component,EventEmitter,OnInit,AfterViewInit,OnChanges, ViewChild,SimpleChanges, ChangeDetectionStrategy   } from '@angular/core';
+import { Component,Output,EventEmitter,OnInit,AfterViewInit,OnChanges, ViewChild,SimpleChanges, ChangeDetectionStrategy   } from '@angular/core';
 import { Usuario } from 'src/app/modelos/usuario';
 import { Item } from 'src/app/modelos/itemLista';
 import { UsuariosService } from 'src/app/servicio/usuarios.service';
@@ -31,6 +31,7 @@ export class ListaUsuariosComponent {
 
     verBotones= true;
 
+  @Output() usuarioEnviado = new EventEmitter<Usuario>();
 
     dataSource = new MatTableDataSource<Usuario>();
 
@@ -159,6 +160,24 @@ export class ListaUsuariosComponent {
     editar(row: any) {
       console.log(row);
 
+      this.UsuariosService.guardarUsuario(row).subscribe(
+        resp => {
+
+
+          console.log(resp);
+          if(resp.body <= 0)
+          {
+              console.log('No se puede guardar el usuario');
+              alert('No se puede eliminar el usuario');
+          }
+          else
+          {
+            //this.listar();
+            this.usuarioEnviado.emit(row);
+          }
+          
+        });
+
   
     }
   
@@ -170,7 +189,7 @@ export class ListaUsuariosComponent {
 
 
             console.log(resp);
-            if(resp.body == 0)
+            if(resp.body <= 0)
             {
                 console.log('No se puede eliminar el usuario');
                 alert('No se puede eliminar el usuario');

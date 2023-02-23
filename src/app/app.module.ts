@@ -22,6 +22,8 @@ import { ListaComponent } from './Componentes/Genericos/lista/lista.component';
 import { ListaUsuariosComponent } from './Componentes/Usuarios/listar/lista-usuarios/lista-usuarios.component';
 import { FormularioUsuariosComponent } from './Componentes/Usuarios/crear/formulario-usuarios/formulario-usuarios.component';
 import { ListaAuditoriasComponent } from './Componentes/Auditorias/listar/lista-auditorias/lista-auditorias.component';
+import { HomeComponent } from './Componentes/Home/home/home.component';
+import { VisualizarComponent } from './Componentes/Usuarios/visualizar/visualizar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ListaAuditoriasComponent } from './Componentes/Auditorias/listar/lista-
     ListaComponent,
     ListaUsuariosComponent,
     FormularioUsuariosComponent,
-    ListaAuditoriasComponent
+    ListaAuditoriasComponent,
+    HomeComponent,
+    VisualizarComponent
   ],
   imports: [
     BrowserModule,

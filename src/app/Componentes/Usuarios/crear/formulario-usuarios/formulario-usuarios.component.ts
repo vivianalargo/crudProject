@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input'; 
@@ -23,6 +23,13 @@ export class FormularioUsuariosComponent {
     password:''
   };
 
+  @Input() usuarioEnviado: Usuario={
+    id:0,
+    username:'',    
+    nombre: '',
+    password:''
+  };
+
 
   constructor(private usuariosService:UsuariosService) { }
 
@@ -31,15 +38,23 @@ export class FormularioUsuariosComponent {
 
   guardar(){
 
-      this.usuariosService.guardarUsuario(this.usuario).subscribe(
+      this.usuariosService.guardarUsuario(this.usuarioEnviado).subscribe(
         resp=>{
             //console.log(data);
-            if(resp.body == 0)
+            if(resp.body <= 0)
             {
                 console.log('No se guardar el usuario');
                 alert('No se puede guadar el usuario');
             }
         });
+
+        this.usuarioEnviado ={
+          id:0,
+          username:'',    
+          nombre: '',
+          password:''
+        };
+      
   }
 
 }

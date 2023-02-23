@@ -1,0 +1,12 @@
+<div class="center">
+    <app-formulario-usuarios [usuarioEnviado]="usuarioEnviado"></app-formulario-usuarios>
+</div>
+
+<div class="center">
+    <app-lista-usuarios (usuarioEnviado)=editar($event)></app-lista-usuarios>
+</div>
+
+<div class="center">
+    <app-lista-auditorias></app-lista-auditorias>
+</div>
+
