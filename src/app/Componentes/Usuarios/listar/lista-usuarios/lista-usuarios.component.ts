@@ -24,27 +24,22 @@ export class ListaUsuariosComponent {
 
     usuarios: Usuario[] = [];
     //listaItems: Item[] = [];
-
     //rowData$: Item[] | any;
-
     //item = new Item();
 
     verBotones= true;
 
-  @Output() usuarioEnviado = new EventEmitter<Usuario>();
+    @Output() usuarioEnviado = new EventEmitter<Usuario>();
 
     dataSource = new MatTableDataSource<Usuario>();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  selection = new SelectionModel<Usuario>(true, []);
+    selection = new SelectionModel<Usuario>(true, []);
 
-  //displayedColumns: string[] = ['username','fecha'];
+    displayedColumns: string[] = ['seleccionar', 'id', 'username','nombre','editar','eliminar'];
 
-  displayedColumns: string[] = ['seleccionar', 'id', 'username','nombre','editar','eliminar'];
-
-
-  pageEvent!: PageEvent;
+    pageEvent!: PageEvent;
     
 
     constructor(private UsuariosService: UsuariosService) {
@@ -144,15 +139,12 @@ export class ListaUsuariosComponent {
 
     seleccionarFila(event:any,row: any) {
 
-
       if(event.target.checked==true){
         console.log(row);
       }
       else{
         console.log('checkbox is unchecked');
       }
-  
-      
   
     }
   

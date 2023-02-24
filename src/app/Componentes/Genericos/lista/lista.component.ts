@@ -24,8 +24,6 @@ export class ListaComponent<TData> implements OnInit{
 
   selection = new SelectionModel<TData>(true, []);
 
-  //displayedColumns: string[] = ['username','fecha'];
-
   displayedColumns: string[] = ['seleccionar','username','campo2','editar','eliminar'];
 
 
@@ -53,14 +51,14 @@ export class ListaComponent<TData> implements OnInit{
     this.dataSource = new MatTableDataSource<TData>(this.rowData);
   }*/
 
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
+ 
+  /*isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
+
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -70,7 +68,7 @@ export class ListaComponent<TData> implements OnInit{
     this.selection.select(...this.dataSource.data);
 
     console.log(this.selection);
-  }
+  }*/
 
 
   seleccionarFila(event:any,row: any) {
@@ -82,16 +80,11 @@ export class ListaComponent<TData> implements OnInit{
     else{
       console.log('checkbox is unchecked');
     }
-
-    
-
   }
 
 
   editar(row: any) {
     console.log("editar" + row);
-
-
   }
 
   eliminar(row: any) {
@@ -100,11 +93,5 @@ export class ListaComponent<TData> implements OnInit{
 
   }
   
-  /** The label for the checkbox on the passed row */
-  /*checkboxLabel(row?: TData): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`;
-  }*/
+
 }

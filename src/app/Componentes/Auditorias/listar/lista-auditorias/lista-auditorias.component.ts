@@ -16,16 +16,14 @@ import {SelectionModel} from '@angular/cdk/collections';
 
 export class ListaAuditoriasComponent implements OnInit,AfterViewInit {
 
-    // Row data of cars to provide to the grid
+    // datos que se leen para construir lista y enviar  al componente genérico
     //auditorias: Auditoria[] | any; //quitarle el any para entender bien el error
 
     auditorias: Auditoria[] = [];
     //listaItems: Item[] = [];
-
     //rowData: Item[] | any;
 
     verBotones= false;
-
     //item = new Item();
     
     dataSource = new MatTableDataSource<Auditoria>();

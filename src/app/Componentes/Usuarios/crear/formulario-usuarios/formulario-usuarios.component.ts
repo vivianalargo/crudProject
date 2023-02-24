@@ -1,8 +1,5 @@
 import { Component,Input } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input'; 
-import { FormsModule } from '@angular/forms';
+
 import { UsuariosService } from 'src/app/servicio/usuarios.service';
 import { Usuario } from 'src/app/modelos/usuario';
 
@@ -30,10 +27,6 @@ export class FormularioUsuariosComponent {
     password:''
   };
 
-  /*isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';*/
-
 
   constructor(private usuariosService:UsuariosService) { }
 
@@ -42,6 +35,15 @@ export class FormularioUsuariosComponent {
 
   guardar(){
 
+    console.log(this.usuarioEnviado);
+
+    if( this.usuarioEnviado.username===''|| this.usuarioEnviado.nombre=== '' || this.usuarioEnviado.password==='')
+    {
+      alert('Por favor complete los datos del formulario');
+    }
+    else
+    {
+      
       this.usuariosService.guardarUsuario(this.usuarioEnviado).subscribe(
         resp=>{
             //console.log(data);
@@ -50,10 +52,7 @@ export class FormularioUsuariosComponent {
                 console.log('No se guardar el usuario');
                 alert('No se puede guadar el usuario');
             }
-            //else{
-              /*this.isSuccessful = true;
-              this.isSignUpFailed = false;*/
-            //}
+
         });
 
         this.usuarioEnviado ={
@@ -62,6 +61,8 @@ export class FormularioUsuariosComponent {
           nombre: '',
           password:''
         };
+    }
+      
       
   }
 

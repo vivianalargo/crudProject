@@ -68,12 +68,5 @@ export class UsuariosService {
   }
   getToken() {
     return this.cookies.get("token");
-  }
-
-  /*getUserLogged() {
-    const token = this.getToken();
-    // Aquí iría el endpoint para devolver el usuario para un token
-  }*/
-
-  
+  }  
 }
