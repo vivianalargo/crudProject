@@ -25,6 +25,10 @@ import { ListaAuditoriasComponent } from './Componentes/Auditorias/listar/lista-
 import { HomeComponent } from './Componentes/Home/home/home.component';
 import { VisualizarComponent } from './Componentes/Usuarios/visualizar/visualizar.component';
 
+
+import { CookieService } from 'ngx-cookie-service';
+//import { httpInterceptorProviders } from './http.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +54,7 @@ import { VisualizarComponent } from './Componentes/Usuarios/visualizar/visualiza
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

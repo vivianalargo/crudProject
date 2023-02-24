@@ -10,6 +10,8 @@ import { Usuario } from 'src/app/modelos/usuario';
 import { AuditoriasService } from 'src/app/servicio/auditorias.service';
 import { Auditoria } from 'src/app/modelos/auditoria';
 
+//import { StorageService } from 'src/app/servicio/storage.service';
+
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -41,10 +43,24 @@ export class LoguinComponent {
 
   };
 
+  /*isLoggedIn = false;
+  isLoginFailed = false;
+
+  errorMessage = '';
+  roles: string[] = [];*/
+
 
   constructor(private usuariosService:UsuariosService, private AuditoriasService:AuditoriasService, public router: Router) { }
 
+
+  
   ngOnInit(): void {
+
+    /*if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      //this.roles = this.storageService.getUser().roles;
+    }*/
+
   }
 
   validarUsuario(){
@@ -63,7 +79,13 @@ export class LoguinComponent {
           }
           else
           {
-            this.router.navigateByUrl('/usuarios');
+              this.usuariosService.setToken(resp.ok);
+              //this.storageService.saveUser(this.usuario.username);
+
+              //this.isLoginFailed = false;
+              //this.isLoggedIn = true;
+              //this.roles = this.storageService.getUser().roles;
+              this.router.navigateByUrl('/usuarios');
           }
       });
   }

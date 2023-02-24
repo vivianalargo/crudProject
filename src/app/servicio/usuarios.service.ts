@@ -4,6 +4,7 @@ import { Usuario } from '../modelos/usuario';
 import UsuarioData from '../../app/usuarios.json';
 import { env } from 'src/enviroments/env';
 import { HttpClient, HttpParams,HttpHeaders} from '@angular/common/http';
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ import { HttpClient, HttpParams,HttpHeaders} from '@angular/common/http';
 })
 
 export class UsuariosService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookies: CookieService) { }
 
   usuario = [];
 
@@ -28,7 +29,6 @@ export class UsuariosService {
   }
 
   //Me permite guardar un nuevo usuario o modificar sus datos
-
   guardarUsuario(usuario:Usuario):Observable<any>{
 
     console.log(usuario);
@@ -50,15 +50,6 @@ export class UsuariosService {
     });
   }
 
-  /*peticion(usuario:Usuario):Observable<any>
-  {
-    return this.http.post<any>('https://localhost:7250/api/Usuarios',usuario,{
-      headers:this.httpHeaders,
-      observe:'response'
-    });
-  }*/
-
-
   validarUsuario(usuario:Usuario): Observable<any> {
     console.log("Estoy en validarUsuario");
 
@@ -72,6 +63,17 @@ export class UsuariosService {
     //return this.http.post<any>('https://localhost:7250/api/Loguin', httpOptions);
   }
 
+  setToken(token: string) {
+    this.cookies.set("token", token);
+  }
+  getToken() {
+    return this.cookies.get("token");
+  }
+
+  /*getUserLogged() {
+    const token = this.getToken();
+    // Aquí iría el endpoint para devolver el usuario para un token
+  }*/
 
   
 }

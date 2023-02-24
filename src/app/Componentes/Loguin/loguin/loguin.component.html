@@ -1,17 +1,21 @@
 
 <div class="center">
-<form> 
+<form 
+name="form"
+(ngSubmit)="f.form.valid"
+#f="ngForm"
+novalidate> 
     <div class="example-container">
       <mat-form-field appearance="fill">
         <mat-label>usuario</mat-label>
-        <input matInput [(ngModel)]="usuario.username" name="username">
+        <input matInput [(ngModel)]="usuario.username" name="username" required>
       </mat-form-field>
     </div>
     
     <div class="example-container">
       <mat-form-field appearance="fill">
         <mat-label>password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" name="password">
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" name="password" required>
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>

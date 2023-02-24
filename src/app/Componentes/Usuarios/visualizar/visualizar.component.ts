@@ -25,6 +25,11 @@ export class VisualizarComponent {
 
     console.log(this.usuarioEnviado);
 
-    //this.ngOnInit();
   }
+
+  salir()
+  {
+    //Salir de la aplicación, ir al home y cerrar sesión
+  }
+
 }

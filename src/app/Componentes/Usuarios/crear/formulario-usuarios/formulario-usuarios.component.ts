@@ -30,6 +30,10 @@ export class FormularioUsuariosComponent {
     password:''
   };
 
+  /*isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';*/
+
 
   constructor(private usuariosService:UsuariosService) { }
 
@@ -46,6 +50,10 @@ export class FormularioUsuariosComponent {
                 console.log('No se guardar el usuario');
                 alert('No se puede guadar el usuario');
             }
+            //else{
+              /*this.isSuccessful = true;
+              this.isSignUpFailed = false;*/
+            //}
         });
 
         this.usuarioEnviado ={
